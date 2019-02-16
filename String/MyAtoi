@@ -1,0 +1,39 @@
+public class Solution {
+    public int MyAtoi(string str) {
+        if (str == null) return 0;
+        int i = 0;
+        List<char> list = new List<char>();
+        bool start=false;
+        while (i < str.Length)
+        {
+            if(str[i]==' ')
+            {
+                if(start) break;
+                i++;
+            }
+            else if (str[i] == '+' || str[i] == '-')
+            {
+                if(start) break;
+                start=true;
+                list.Add(str[i]);
+                i++;
+            }
+            else if (str[i] >= '0' && str[i] <= '9')
+            {
+                start=true;
+                list.Add(str[i]);
+                i++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        if (list.Count == 0) return 0;
+        int y;
+        if (int.TryParse(new string(list.ToArray()), out y)) return y;
+        if(list.Count==1) return 0;
+        if (list[0] == '-') return int.MinValue;
+        return int.MaxValue;
+    }
+}
