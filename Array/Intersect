@@ -1,0 +1,44 @@
+public class Solution {
+    public int[] Intersect(int[] nums1, int[] nums2) {
+        int len=0;
+        Dictionary<int,int> Dic1=new Dictionary<int,int>();
+        Dictionary<int,int> Dic2=new Dictionary<int,int>();
+        for(int i=0;i<nums1.Length;i++){
+            if(Dic1.ContainsKey(nums1[i])){
+                Dic1[nums1[i]]++;
+            }
+            else{
+                Dic1.Add(nums1[i],1);
+            }
+        }
+        for(int i=0;i<nums2.Length;i++){
+            if(Dic2.ContainsKey(nums2[i])){
+                Dic2[nums2[i]]++;
+            }
+            else{
+                Dic2.Add(nums2[i],1);
+            }
+        }
+        foreach(var kvp in Dic1.ToList()){
+            if(Dic2.ContainsKey(kvp.Key)){
+                if(Dic2[kvp.Key]<kvp.Value){
+                    Dic1[kvp.Key]=Dic2[kvp.Key];
+                    
+                }
+                len+=Dic1[kvp.Key];
+            }
+            else{
+                Dic1.Remove(kvp.Key);
+            }
+        }
+        int[] arr=new int[len];
+        int index=0;
+        foreach(KeyValuePair<int,int> kvp in Dic1){
+            for(int i=0;i<kvp.Value;i++){
+                arr[index]=kvp.Key;
+                index++;
+            }
+        }
+        return arr;
+    }
+}
