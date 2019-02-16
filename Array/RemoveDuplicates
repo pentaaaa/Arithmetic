@@ -1,0 +1,20 @@
+public class Solution {
+    public int RemoveDuplicates(int[] nums) {
+        int cout=nums.Length;
+        for(int i=0;i<cout-1;i++){
+            for(int n=cout-1;n>i;n--){
+                if(nums[i]==nums[n]){
+                    
+                    
+                    for(int z=n;z<cout-1;z++){
+                        nums[z]=nums[z+1];
+                    }
+                        cout-=1;
+                    
+                }
+            }
+        }
+        return cout;
+        
+    }
+}
