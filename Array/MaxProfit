@@ -1,0 +1,27 @@
+public class Solution {
+    public int MaxProfit(int[] prices) {
+        bool buying=false;
+        int buy=0;
+        
+        int cout=0;
+        for(int i=0;i<prices.Length;i++){
+            if(i==prices.Length-1){
+                if(buying){
+                    cout+=prices[i]-buy;
+                    return cout;
+                }
+                return cout;
+            }
+            
+            if(buying==false&&prices[i]<prices[i+1]){
+                buy=prices[i];
+                buying=true;
+            }
+            if(buying==true&&prices[i]>prices[i+1]){
+                cout+=prices[i]-buy;
+                buying=false;
+            }
+        }
+        return cout;
+    }
+}
