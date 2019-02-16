@@ -1,0 +1,31 @@
+public class Solution {
+    public int[] PlusOne(int[] digits) {
+        int index=digits.Length-1;
+        
+        
+            return a(digits,index);
+    }
+    public int[] a(int[] arr,int index){
+        if(arr[index]<9){
+            arr[index]++;
+            return arr;
+        }else{
+            if(index==0){
+                int[] arr2=new int[arr.Length+1];
+                for(int i=2;i<arr2.Length;i++){
+                    arr2[i]=arr[i-1];
+                }
+                arr2[0]=1;
+                arr2[1]=0;
+                //arr=arr2;
+                return arr2;
+                }
+            else{
+                arr[index]=0;
+                index--;
+                arr=a(arr,index);
+            }
+            }
+        return arr;
+        }
+    }
